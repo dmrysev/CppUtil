@@ -1,8 +1,8 @@
-#include "file.h"
+#include "util/file.h"
 
 #include <fstream>
 #include <sstream>
-#include <experimental/filesystem>
+#include <filesystem>
 
 using std::vector;
 using std::ifstream;
@@ -33,7 +33,7 @@ std::string read_file(const std::string& filepath) {
 }
 
 string filename(const string& path) {
-    std::experimental::filesystem::path filepath(path);
+    std::filesystem::path filepath(path);
     return filepath.filename().string();
 }
 

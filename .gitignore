@@ -1,0 +1,27 @@
+## General
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.cuo
+
+# QtCreator files
+*.user
+
+# Build artifacts
+build/*
+bin/
+obj/
+*/build/*
+
+# Office backup files
+~$*
+deploy
+*.autosave
+*.8-pre1
+/style/library/translations/ts.qrc
+
+# VS Code
+.vscode
+.ionide
