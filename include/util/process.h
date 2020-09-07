@@ -3,7 +3,7 @@
 #include <string>
 #include <stdio.h>
 
-namespace ABB::OptiMold::Utils {
+namespace Util {
 
     // Execute system command and return its output as a string
     // @TODO: rewrite with boost::process

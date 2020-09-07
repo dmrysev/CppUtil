@@ -4,20 +4,15 @@
 #include <sstream>
 #include <filesystem>
 
-using std::vector;
-using std::ifstream;
-using std::ios;
-using std::string;
 
+namespace Util {
 
-namespace ABB::OptiMold::Utils {
-
-vector<char> read_all_bytes(const std::string& filepath) {
-    ifstream ifs(filepath, ios::binary|ios::ate);
-    ifstream::pos_type pos = ifs.tellg();
+std::vector<char> read_all_bytes(const std::string& filepath) {
+    std::ifstream ifs(filepath, std::ios::binary|std::ios::ate);
+    std::ifstream::pos_type pos = ifs.tellg();
     std::vector<char> result(static_cast<size_t>(pos));
 
-    ifs.seekg(0, ios::beg);
+    ifs.seekg(0, std::ios::beg);
     ifs.read(result.data(), pos);
 
     return result;
@@ -27,14 +22,31 @@ std::string read_file(const std::string& filepath) {
     std::ifstream file(filepath);
     std::stringstream ss;
     ss << file.rdbuf();
-    string content = ss.str();
+    std::string content = ss.str();
 
     return content;
 }
 
-string filename(const string& path) {
+std::string filename(const std::string& path) {
     std::filesystem::path filepath(path);
     return filepath.filename().string();
+}
+
+
+std::string concat_files(const std::string& folder) {
+    std::stringstream sstream;
+
+    for(const auto& p: std::filesystem::directory_iterator(folder)) {
+        std::ifstream fstream(p.path().string());
+        sstream << fstream.rdbuf();
+    }
+
+    return sstream.str();
+}
+
+std::string absolute_path(const std::string& filepath)
+{
+    return std::filesystem::absolute({filepath}).string();
 }
 
 }
