@@ -10,6 +10,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      mkdir build
       cmake ..
       cmake --build
     workingDirectory: 'build'
