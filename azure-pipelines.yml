@@ -5,13 +5,11 @@
 
 trigger:
 - master
-
 pool: Default
-
 steps:
-- task: CMake@1
+- task: CmdLine@2
   inputs:
-    cmakeArgs: '..'
-- task: CMake@1
-  inputs:
-    cmakeArgs: '--build'
+    script: |
+      cmake ..
+      cmake --build
+    workingDirectory: 'build'
